@@ -19,6 +19,7 @@ export default {
   },
   mounted(){
     console.log(tool.relativeTimeFormat('Fri Oct 06 09:37:46 CST 2018'))
+    console.log(tool.dataTimeFormat(new Date().getTime()))
   }
 
 }
