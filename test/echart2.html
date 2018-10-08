@@ -1,0 +1,99 @@
+<!--首先需要下载Echarts。-->
+<!--下载地址：http://echarts.baidu.com/download.html-->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '项目进度'
+        },
+        legend: {
+            data: ['项目进度']
+        },
+        xAxis: {
+            type: 'time'
+        },
+        yAxis: {
+            data: ['测试实际','测试计划', '程序实际','程序计划','UI实际','UI计划','策划实际','策划计划',]
+        },
+        tooltip: {
+            show: true,
+            trigger: 'axis',
+            formatter: function(params) {
+                var res = params[0].name + "
+                "
+                var date0 = params[0].data;
+                var date1 = params[1].data;
+                date0 = date0.getFullYear() + "-" + (date0.getMonth() + 1) + "-" + date0.getDate();
+                date1 = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate();
+                res += params[0].seriesName + ":" + date0 + "
+                "
+                res += params[1].seriesName + ":" + date1 + "
+                "
+                return res;
+            }
+        },
+        grid: {
+            left: '20%',
+            right: '10%'
+        },
+        series: [
+            {
+                name: '开始时间',
+                type: 'bar',
+                stack: '总量',
+                barWidth: '60%',
+                itemStyle: {
+                    normal: {
+                        color: 'rgba(0,0,0,0)'
+                    }
+                },
+                data: [
+                    new Date("2016/03/28"),
+                    new Date("2016/04/01"),
+                    new Date("2016/03/21"),
+                    new Date("2016/03/01"),
+                    new Date("2016/02/15"),
+                    new Date("2016/02/01"),
+                    new Date("2016/01/09"),
+                    new Date("2016/01/01"),
+                ]
+            }, {
+                name: '结束时间',
+                type: 'bar',
+                stack: '总量',
+                barWidth: '60%',
+
+                itemStyle: {
+                    normal: {
+                        color: function(params) {
+                            var colorList = [
+                                '#9e9e9e','#259d24','#9e9e9e','#259d24','#9e9e9e','#259d24','#9e9e9e','#259d24'
+                            ];
+                            //设置对应颜色
+                            return colorList[params.dataIndex]
+                        },
+                        barBorderRadius: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0)',
+                        shadowBlur: 0 //图形阴影的模糊大小。
+                    }
+                },
+
+                data: [
+                    new Date("2016/6/20"),
+                    new Date("2016/5/30"),
+                    new Date("2016/6/12"),
+                    new Date("2016/5/30"),
+                    new Date("2016/4/25"),
+                    new Date("2016/3/30"),
+                    new Date("2016/3/29"),
+                    new Date("2016/3/30")
+                ]
+            }
+        ]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
