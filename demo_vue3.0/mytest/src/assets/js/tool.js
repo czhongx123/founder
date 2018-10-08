@@ -1,5 +1,5 @@
-import moment from './plugins/moment.js'
-export default {
+import moment from 'moment'
+export default{
     //时间格式转化
     relativeTimeFormat:function(data){
         var dateNow=new Date();
@@ -14,12 +14,6 @@ export default {
             default:strDayName=moment(data).format("YYYY-MM-DD HH:mm:ss");break;
         }
         return strDayName
-    }//相对时间
-
+    }//相对时间(支持标准时间、CST时间、'2018-10-01 12:02:23'、时间戳)
 }
-
-
-
-
-
 

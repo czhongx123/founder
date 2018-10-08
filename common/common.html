@@ -3,9 +3,31 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style></style>
+    <script src="./plugins/vue.min.js"></script>
+    <!-- <script src="./plugins/moment.js"></script> -->
+    
 </head>
 <body>
-
+    <div id="container">
+            {{aa}}
+    </div>
 </body>
+<script>
+    import tool from 'common.js'
+     new Vue({
+        el:'#container',
+        data(){
+            return {
+                aa:'哈哈'
+            }
+        },
+        mounted () {
+            
+            var a=tool.relativeTimeFormat('2018-10-07 15:00:23')
+            console.log(a)
+        }
+            
+    })
 
+</script>
 </html>
