@@ -1,0 +1,42 @@
+{
+  "name": "clkm",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --target lib src/build.js",
+    "build42": "vue-cli-service build --mode test42 --target lib src/build.js",
+    "build43": "vue-cli-service build --mode test43 --target lib src/build.js",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "clipboard": "^2.0.1",
+    "highcharts": "^6.1.1",
+    "iview": "^2.14.3",
+    "jquery": "^3.3.1",
+    "vue": "^2.5.16",
+    "vue-meta": "^1.5.2",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-rc.10",
+    "@vue/cli-service": "^3.0.0-rc.10",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "vue-template-compiler": "^2.5.16",
+    "vuepress": "^0.13.1"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
