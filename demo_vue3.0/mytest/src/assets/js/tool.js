@@ -1,6 +1,7 @@
 import moment from 'moment'
+import _ from 'lodash'
 export default{
-    //时间格式转化
+    //================时间格式转化==========
     relativeTimeFormat:function(data){
         var dateNow=new Date();
         dateNow=moment(dateNow).format('YYYY-MM-DD');
@@ -26,6 +27,51 @@ export default{
     },//将CMT 格式的时间转换为'2018-10-01 12:02:21'
     dataTimeFormat(data){
         return moment(data).format('YYYY-MM-DD HH:mm:ss');
-    }//将时间戳转换为'2018-10-01 12:02:21'
+    },//将时间戳转换为'2018-10-01 12:02:21'
+
+
+    //===========================数组的处理=======================================
+    ArrRemoveRepeat(arr,key){
+        return _.uniqBy(arr,key)
+    },//数组去重['aa','ss','ss']数组不需要传入key参数，[{aa:'ss'},{aa:'ss'}]需要传入参数'aa'
+    ArrSort(arr,positive,isIncludeObj,key){
+        let result,arrEnd;
+        if(isIncludeObj){
+            arrEnd=_.sortBy(arr, function(item) { 
+                result= positive ? item[key] : -item[key]
+                return result;        
+              });
+        }else{
+            arrEnd=_.sortBy(arr, function(item) { 
+                result= positive ? item : -item  
+                return result;             
+              });
+        }
+        return arrEnd
+  
+    },//数组排序(positive:true表示正序，isIncludeObj：true表示内含对象，key表示对象需要排序的属性)
+    //===========================对象的处理==========================
+    //===========================字符串的处理==========================
+    isRealNum(val){
+        if(val === "" || val ==null){
+            return false;
+        }
+        if(!isNaN(val)){
+            return true;
+        }else{
+            return false;
+        }
+    },//判断是否为数字
+    isLetter(val){
+        var reg= /^[A-Za-z]/;
+        if (reg.test(val)){
+            return true
+        }else{
+            return false
+        }
+    },//判断第一个字符是否为字母
+    aa(){
+
+    }
 }
 
