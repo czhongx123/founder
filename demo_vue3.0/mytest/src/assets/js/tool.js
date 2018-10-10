@@ -50,6 +50,10 @@ export default{
         return arrEnd
   
     },//数组排序(positive:true表示正序，isIncludeObj：true表示内含对象，key表示对象需要排序的属性)
+    arrSameKeyMerge(arr,key){
+        let result
+        return result
+    },//将数组中有相同属性的子集合并(并去重)
     //===========================对象的处理==========================
     //===========================字符串的处理==========================
     isRealNum(val){
