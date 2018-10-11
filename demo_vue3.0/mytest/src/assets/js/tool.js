@@ -28,6 +28,59 @@ export default{
     dataTimeFormat(data){
         return moment(data).format('YYYY-MM-DD HH:mm:ss');
     },//将时间戳转换为'2018-10-01 12:02:21'
+    curDayStartTime(){
+        return moment().format('YYYY-MM-DD 00:00:00');
+    },//获取当天的零点时间
+    curDayEndTime(){
+        return moment().format('YYYY-MM-DD 24:00:00');
+    },//获取当天的24点时间
+    curTimeDurationEnd(){
+
+    },//当前时间距当天结束差的时间
+    timeDuration(){
+
+    },//两个时间点的时间差
+    getLastSomeDays(n){
+        let date = [] 
+        date.push(moment().subtract('days', n).format('YYYY-MM-DD')) ;
+        date.push(moment().subtract('days', 1).format('YYYY-MM-DD')) ;
+        return date
+    },//获取最近n天的开始结束时间
+    getLastWeekDays(){
+        let date = [] 
+        let weekOfday = parseInt(moment().format('d')); // 计算今天是这周第几天  周日为一周中的第一天 
+        let start = moment().subtract(weekOfday + 6, 'days').format('YYYY-MM-DD '); // 周一日期  
+        let end = moment().subtract(weekOfday, 'days').format('YYYY-MM-DD'); // 周日日期  
+        date.push(start);
+        date.push(end);
+        return date;
+    },// 获取上一周的开始结束时间
+    getLastMonthDays(){
+        let date = [];  
+        let start = moment().subtract('month', 1).format('YYYY-MM') + '-01';  
+        let end = moment(start).subtract('month', -1).add('days', -1).format('YYYY-MM-DD');  
+        date.push(start);  
+        date.push(end);  
+        return date;
+    },//获取上一个月的开始结束时间
+    getCurrWeekDays(){
+        let date = []  
+        let weekOfday = parseInt(moment().format('d')) // 计算今天是这周第几天 周日为一周中的第一天  
+        let start = moment().subtract(weekOfday, 'days').format('YYYY-MM-DD') // 周一日期  
+        let end = moment().add(7 - weekOfday - 1, 'days').format('YYYY-MM-DD') // 周日日期  
+        date.push(start)  
+        date.push(end)  
+        return date
+    },//获取当前周的开始结束时间
+    getCurrMonthDays(){
+        let date = []  
+        let start = moment().add('month', 0).format('YYYY-MM') + '-01'  
+        let end = moment(start).add('month', 1).add('days', -1).format('YYYY-MM-DD')  
+        date.push(start)  
+        date.push(end)  
+        return date
+    },//获取当前月的开始结束时间
+
 
 
     //===========================数组的处理=======================================
@@ -53,7 +106,7 @@ export default{
     arrSameKeyMerge(arr,key){
         let result
         return result
-    },//将数组中有相同属性的子集合并(并去重)
+    },//将数组中有相同属性的子集合并(并去重)[{aa:[ss:'ss'],bb:'s'},{aa:[d:'dd'],bb:'s'}]
     //===========================对象的处理==========================
     //===========================字符串的处理==========================
     isRealNum(val){
@@ -74,6 +127,21 @@ export default{
             return false
         }
     },//判断第一个字符是否为字母
+    isArr(data){
+        return _.isArray(data)
+    },//是否是数组
+    isBoolean(data){
+        return _.isBoolean(data)
+    },//是否是布尔类型
+    isDate(data){
+        return _.isDate(data)
+    },//是否日期类型(有局限，用时先测试)
+    targetStart(data,targetKey){
+        return _.startsWith(data,targetKey)
+    },//是否以给定的字符串开头
+    targetEnd(data,targetKey){
+        return _.endsWith(data,targetKey)
+    },//是否以给定的字符串结尾
     aa(){
 
     }

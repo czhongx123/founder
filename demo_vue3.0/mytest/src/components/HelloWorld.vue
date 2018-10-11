@@ -19,7 +19,8 @@ export default {
   },
   mounted(){
     var arr=['sd','a','df','sc']
-    var a=tool.ArrSort(arr,true,false)
+    var arr='s'
+    var a=tool.curDayEndTime()
    
      console.log(a,'a')
 
