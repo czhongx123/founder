@@ -18,9 +18,9 @@ export default {
     }
   },
   mounted(){
-    var arr=['sd','a','df','sc']
-    var arr='s'
-    var a=tool.curDayEndTime()
+    var arr=[{aa:'ss'},{aa:'ss'}]
+
+    var a=tool.getCurrYearDays()
    
      console.log(a,'a')
 
