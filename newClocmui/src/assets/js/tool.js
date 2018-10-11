@@ -175,7 +175,7 @@ export default{
         if(!String.prototype.localeCompare)
                return null;
            var letters = "*abcdefghjklmnopqrstwxyz".split('');
-           var zh = "阿八嚓哒妸发旮哈讥咔垃痳拏噢妑七呥扨它穵夕丫帀".split('');
+           var zh = "阿八嚓哒妸发旮哈讥咔垃痳拏噢妑七呥扨他穵夕丫帀".split('');
            var segs = [];
            var curr;
            $.each(letters, function(i){
