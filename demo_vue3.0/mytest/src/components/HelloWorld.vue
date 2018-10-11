@@ -22,7 +22,10 @@ export default {
     var a=tool.ArrSort(arr,true,false)
    
      console.log(a,'a')
-    
+
+  },
+  methods:{
+       
   }
 
 }
