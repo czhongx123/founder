@@ -162,6 +162,21 @@ export default{
         result=d+"天"+h+'小时'+m+"分"+s+'秒'
         return result
     },//倒计时(只获取时间差)
+    compareData(date1,date2){
+        var strValue1=date1.split("/");
+        var date1Temp=new Date(strValue1[0],parseInt(strValue1[1],10)-1,1);
+
+        var strValue2=date2.split("/");
+        var date2Temp=new Date(strValue2[0],parseInt(strValue2[1],10)-1,1);
+
+        if(date1Temp.getTime()==date2Temp.getTime())
+            return 0;
+        else if(date1Temp.getTime()>date2Temp.getTime())
+            return 1;
+        else
+            return -1;
+
+    },//比较两个日期字符串（YYYY/MM型）date1=date2则返回0 , date1>date2则返回1 , date1<date2则返回-1
 
 
 
@@ -200,8 +215,66 @@ export default{
         return _.uniqBy(arr,sameKey)
     },//将数组中有相同属性的子集合并(并去重)[{aa:[{ss:'ss'}],bb:'s'},{aa:[{d:'dd'}],bb:'s'}]合并为
     //[{bb:'s'},aa:[{d:'dd'},{ss:'ss'}]]
+    insertArr(arr,index,obj){
+        arr.splice(index,0,obj)
+        return arr
+    },//在数组指定位置插入指定的元素
     //===========================对象的处理==========================
+    dealObjectValue(obj){
+        var param = {};
+        if ( obj === null || obj === undefined || obj === "" ) return param;
+        for ( var key in obj ){
+            if (dataType(obj[key]) === "Object" ){
+                param[key] = this.dealObjectValue(obj[key]);
+            }else if(  obj[key] !== null && obj[key] !== undefined && obj[key] !== ""  ){
+                param[key] = obj[key];
+            }
+        }
+
+        function dataType(obj){
+            if (obj===null) return "Null";
+            if (obj===undefined) return "Undefined";
+            return Object.prototype.toString.call(obj).slice(8,-1);
+        }
+        return param;
+    },//排除对象参数值为”“、null、undefined，并返回一个新对象
+    dataType(obj){
+        if (obj===null) return "Null";
+        if (obj===undefined) return "Undefined";
+        return Object.prototype.toString.call(obj).slice(8,-1);
+    },// 判断传入参数的类型，以字符串的形式返回
     //===========================字符串的处理========================
+    strTrim(str,type){
+        switch(type){
+            case "1":str = str.replace(/\s*/g,"");break;//去除字符串内所有的空格
+            case "2":str = str.replace(/^\s*|\s*$/g,"");break;//去除字符串内两头的空格
+            case "3":str = str.replace(/^\s*/,"");break;//去除字符串内左侧的空格
+            case "4":str = str.replace(/(\s*$)/g,"");break;//去除字符串内右侧的空格
+        }
+        
+        return str
+    },//去除字符串中的空格
+    removeHTMLTag(str){
+        str = str. replace(/<\/?[^>]*>/g ,''); //去除HTML tag
+        str = str. replace(/[ | ]*\n/g ,'\n'); //去除行尾空白
+        str = str.replace(/\n[\s| | ]*\r/g,'\n'); //去除多余空行
+        str =str. replace(/&nbsp;/ig ,''); //去掉&nbsp;
+        return str ;
+    },//去掉html的标签
+    banCopyAndPaste(){
+        // 禁止复制
+        document.oncopy = function(){event.returnValue = false;};
+        // 禁止右键菜单
+        document.oncontextmenu = function(){event.returnValue = false;};
+        // 禁止网页上选取内容
+        document.onselectstart = function(){event.returnValue = false;};
+        // 键盘事件
+        document.onkeydown = function(){
+            if( event.ctrlKey ){
+                return false;
+            }
+        };
+    },//禁用鼠标右键，禁止复制粘贴等操作
     isRealNum(val){
         if(val === "" || val ==null){
             return false;

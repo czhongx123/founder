@@ -18,11 +18,11 @@ export default {
     }
   },
   mounted(){
-    var arr=[{aa:'ss'},{aa:'ss'}]
-
-    var a=tool.getCurrYearDays()
    
-     console.log(a,'a')
+
+    var a=tool.removeHTMLTag("<a>222<span>ss</span></a>")
+   
+    this.aa=a
 
   },
   methods:{
