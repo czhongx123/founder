@@ -1,13 +1,17 @@
-class Main{
-    constructor(){
-        
-    };
-    name:string;
-    show(text:string):void{
-        let $ele:JQuery=$('h1')
-        $ele.text(text);
+class Student{
+    fullname:string;
+    constructor(public firstname,public middleinitial,public lastname){
+        this.fullname=firstname+" "+middleinitial+" "+lastname
     }
 }
-let main =new Main();
-main.name="hello word";
-main.show(main.name);
+
+interface Person{
+    firstname:string;
+    lastname:string;
+}
+function greeter(person:Person){
+    return "Hello,"+person.firstname+""+person.lastname;
+}
+
+var user=new Student("Jane",'M.','User')
+document.body.innerHTML=greeter(user)

@@ -1,14 +1,13 @@
-"use strict";
-var Main = /** @class */ (function () {
-    function Main() {
+class Student {
+    constructor(firstname, middleinitial, lastname) {
+        this.firstname = firstname;
+        this.middleinitial = middleinitial;
+        this.lastname = lastname;
+        this.fullname = firstname + " " + middleinitial + " " + lastname;
     }
-    ;
-    Main.prototype.show = function (text) {
-        var $ele = $('h1');
-        $ele.text(text);
-    };
-    return Main;
-}());
-var main = new Main();
-main.name = "hello word";
-main.show(main.name);
+}
+function greeter(person) {
+    return "Hello," + person.firstname + "" + person.lastname;
+}
+var user = new Student("Jane", 'M.', 'User');
+document.body.innerHTML = greeter(user);
